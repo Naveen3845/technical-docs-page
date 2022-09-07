@@ -1,0 +1,478 @@
+<!DOCKTYPE html>
+  <html lang="en">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,intial-scale=1.0" />
+
+  <head>
+    <title> SQL_Basics_Sheet</title>
+  </head>
+
+  <body>
+    <nav id="navbar">
+      <header>SQL Basics</header>
+      <ul>
+        <li><a class="nav-link" href="#SQL_Intro">SQL Intro</a></li>
+        <li>
+          <a class="nav-link" href="#SQL_Syntax">SQL Syntax</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#SQL_Statements">SQL Statements</a>
+        </li>
+        <li><a class="nav-link" href="#SQL_Clause">SQL Clause</a></li>
+        <li><a class="nav-link" href="#SQL_Operators">SQL Operators</a></li>
+        <li>
+          <a class="nav-link" href="#SQL_Keyword">SQL Keyword</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#SQL_Joins">SQL Joins</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#SQL_CREATE_DATABASE">SQL CREATE DATABASE</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#SQL_DROP_DATABASE">SQL DROP DATABASE</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#SQL_BACKUP_DATABASE">SQL BACKUP DATABASE</a>
+        </li>
+        <li><a class="nav-link" href="#SQL_CREATE_TABLE">SQL CREATE TABLE</a></li>
+        <li><a class="nav-link" href="#SQL_DROP_TABLE">SQL DROP TABLE</a></li>
+        <li><a class="nav-link" href="#SQL_ALTER_TABLE">SQL ALTER TABLE</a></li>
+        <li><a class="nav-link" href="#SQL_Constraints">SQL Constraints</a></li>
+        <li><a class="nav-link" href="#SQL_Quick_Reference">SQL Quick Reference</a></li>
+      </ul>
+    </nav>
+    <main id="main-doc">
+      <section class="main-section" id="SQL Intro">
+        <header>SQL Intro</header>
+        <article>
+          <p>
+          <ul>
+            <li> SQL stands for Structured Query Language</li>
+            <li>SQL lets you access and manipulate databases</li>
+            <li>SQL became a standard of the American National Standards Institute (ANSI) in 1986, and of the International Organization for Standardization (ISO) in 1987</li>
+          </ul>
+          </p>
+          <p>
+          <h1>What Can SQL do?</h1>
+          <ul>
+            <li>SQL can execute queries against a database</li>
+            <li>SQL can retrieve data from a database</li>
+            <li>SQL can insert records in a database</li>
+            <li>SQL can update records in a database</li>
+            <li>SQL can delete records from a database</li>
+            <li>SQL can create new databases
+              SQL can create new tables in a database</li>
+            <li>SQL can create stored procedures in a database
+              SQL can create views in a database
+              SQL can set permissions on tables, procedures, and views</li>
+          </ul>
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="SQL_Syntax">
+        <header>SQL Syntax</header>
+        <article>
+          <p>
+          <ul>
+            <li>SQL keywords are NOT case sensitive: select is the same as SELECT
+              In this tutorial we will write all SQL keywords in upper-case.</li>
+            <li>Semicolon is the standard way to separate each SQL statement in database systems that allow more than one SQL statement to be executed in the same call to the server.</li>
+          </ul>
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="SQL_Statements">
+        <header>SQL Statements</header>
+        <article>
+          <p>
+          <h1>The SQL SELECT Statement</h1>
+          <ul>
+            <li>The SELECT statement is used to select data from a database.</li>
+
+            <li>The data returned is stored in a result table, called the result-set.</li>
+            <code>
+              SELECT column1, column2, ...
+              FROM table_name;
+            </code>
+            <li>Here, column1, column2, ... are the field names of the table you want to select data from. If you want to select all the fields available in the table, use the following syntax:</li>
+            <code>
+              SELECT * FROM table_name;
+            </code>
+            <h3>SELECT Column Example</h3>
+            <code>
+              <strong>EX:</strong>
+              SELECT CustomerName, City FROM Customers;
+            </code>
+            <h1>The SQL SELECT DISTINCT Statement</h1>
+            <li>The SELECT DISTINCT statement is used to return only distinct (different) values.</li>
+
+            <li>Inside a table, a column often contains many duplicate values; and sometimes you only want to list the different (distinct) values.</li>
+            <h3>SELECT DISTINCT Syntax</h3>
+            <code>
+              SELECT DISTINCT column1, column2, ...
+              FROM table_name;
+            </code>
+            <h1>The SQL INSERT INTO Statement</h1>
+            <li>The INSERT INTO statement is used to insert new records in a table.</li>
+            <h3>INSERT INTO Syntax</h3>
+            <li>Specify both the column names and the values to be inserted:</li>
+            <code>
+              INSERT INTO table_name (column1, column2, column3, ...)
+              VALUES (value1, value2, value3, ...);</code>
+            <li> If you are adding values for all the columns of the table, you do not need to specify the column names in the SQL query. However, make sure the order of the values is in the same order as the columns in the table. Here, the INSERT INTO syntax would be as follows:</li>
+            <code>
+              INSERT INTO table_name
+              VALUES (value1, value2, value3, ...);
+            </code>
+            <h3>INSERT INTO Example</h3>
+            <code>
+              INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+              VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');</code>
+            <h4>Insert Data Only in Specified Columns</h4>
+            <li>The following SQL statement will insert a new record, but only insert data in the "CustomerName", "City", and "Country" columns (CustomerID will be updated automatically):</li>
+            <code>
+              INSERT INTO Customers (CustomerName, City, Country)
+              VALUES ('Cardinal', 'Stavanger', 'Norway');
+            </code>
+
+            <h2>The SQL UPDATE Statement</h2>
+            <li>The UPDATE statement is used to modify the existing records in a table.</li>
+            <h3>UPDATE Syntax</h3>
+            <code>
+              UPDATE table_name
+              SET column1 = value1, column2 = value2, ...
+              WHERE condition;</code>
+            <h4>UPDATE Multiple Records</h4>
+            <li>It is the WHERE clause that determines how many records will be updated.</li>
+            <code>
+              UPDATE Customers
+              SET ContactName='Juan'
+              WHERE Country='Mexico';</code>
+            <h1>The SQL DELETE Statement</h1>
+            <li>The DELETE statement is used to delete existing records in a table.</li>
+            <h4>DELETE Syntax</h4>
+            <code>
+              DELETE FROM table_name WHERE condition;
+            </code>
+            <h4>Delete All Records</h4>
+            <li>It is possible to delete all rows in a table without deleting the table. This means that the table structure, attributes, and indexes will be intact:</li>
+            <code>
+              DELETE FROM table_name;
+            </code>
+            <h1>SQL SELECT INTO Statement</h1>
+            <li>
+              The SELECT INTO statement copies data from one table into a new table.
+            </li>
+            <h4>SELECT INTO Syntax</h4>
+            <code>
+              SELECT *
+              INTO newtable [IN externaldb]
+              FROM oldtable
+              WHERE condition;
+            </code>
+            <li>Copy only some columns into a new table:</li>
+            <code>
+              SELECT column1, column2, column3, ...
+              INTO newtable [IN externaldb]
+              FROM oldtable
+              WHERE condition;
+            </code>
+            <h3>SQL SELECT INTO Examples</h3>
+            <li>he following SQL statement creates a backup copy of Customers:</li>
+            <code>
+              SELECT * INTO CustomersBackup2017
+              FROM Customers;
+            </code>
+            <li>
+              The following SQL statement copies only a few columns into a new table:
+            </li>
+            <code>
+              SELECT CustomerName, ContactName INTO CustomersBackup2017
+              FROM Customers;
+            </code>
+          </ul>
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="SQL_Clause">
+        <header>SQL-Clause</header>
+        <article>
+          <h1>The SQL WHERE Clause</h1>
+          <li>The WHERE clause is used to filter records.It is used to extract only those records that fulfill a specified condition.</li>
+          <h3>WHERE Syntax</h3>
+          <code>
+            SELECT column1, column2, ...
+            FROM table_name
+            WHERE condition;
+          </code>
+          <h1>The SQL HAVING Clause</h1>
+          <li>The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions.</li>
+          <h3>HAVING Syntax</h3>
+          <code>
+            SELECT column_name(s)
+            FROM table_name
+            WHERE condition
+            GROUP BY column_name(s)
+            HAVING condition
+            ORDER BY column_name(s);
+          </code>
+        </article>
+      </section>
+      <section class="main-section" id="SQL_Operators">
+        <header>SQL-Operators</header>
+        <article>
+          <p>
+          <h1>The SQL BETWEEN Operator</h1>
+          <ul>
+            <li>The BETWEEN operator selects values within a given range. The values can be numbers, text, or dates.</li>
+
+            <li>The BETWEEN operator is inclusive: begin and end values are included.</li>
+            <h3>BETWEEN Syntax</h3>
+            <code>
+              SELECT column_name(s)
+              FROM table_name
+              WHERE column_name BETWEEN value1 AND value2;
+            </code>
+            <h1>The SQL AND, OR and NOT Operators</h1>
+            <li>The WHERE clause can be combined with AND, OR, and NOT operators.</li>
+            <li>The AND and OR operators are used to filter records based on more than one condition:</li>
+            <li>The AND operator displays a record if all the conditions separated by AND are TRUE.</li>
+            <li>The OR operator displays a record if any of the conditions separated by OR is TRUE.</li>
+            <li>The NOT operator displays a record if the condition(s) is NOT TRUE.</li>
+            <h4>AND Syntax</h4>
+            <code>
+              SELECT column1, column2, ...
+              FROM table_name
+              WHERE condition1 AND condition2 AND condition3 ...;
+            </code>
+            <h4>OR Syntax</h4>
+            <code>
+              SELECT column1, column2, ...
+              FROM table_name
+              WHERE condition1 OR condition2 OR condition3 ...;
+            </code>
+            <h4>NOT Syntax</h4>
+            <code>
+              SELECT column1, column2, ...
+              FROM table_name
+              WHERE NOT condition;
+            </code>
+            <h4>Combining AND, OR and NOT</h4>
+            <li>You can also combine the AND, OR and NOT operators.</li>
+            <code>
+              SELECT * FROM Customers
+              WHERE Country='Germany' AND (City='Berlin' OR City='München');
+            </code>
+          </ul>
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="SQL_Keyword">
+        <header>SQL-Keyword</header>
+        <article>
+          <p>
+          <ul>
+            <h1>SQL ORDER BY Keyword</h1>
+            <li>The ORDER BY keyword is used to sort the result-set in ascending or descending order.
+            <li>
+            <li>The ORDER BY keyword sorts the records in ascending order by default. To sort the records in descending order, use the DESC keyword.</li>
+            <h4>ORDER BY Syntax</h4>
+            <code>
+              SELECT column1, column2, ...
+              FROM table_name
+              ORDER BY column1, column2, ... ASC|DESC;
+            </code>
+          </ul>
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="SQL_Joins">
+        <header>SQL_Joins</header>
+        <article>
+          Different Types of SQL JOINs:
+          <p>
+          <p>Here are the different types of the JOINs in SQL:</p>
+          <li>(INNER) JOIN: Returns records that have matching values in both tables</li>
+          <li>LEFT (OUTER) JOIN: Returns all records from the left table, and the matched records from the right table</li>
+          <li>RIGHT (OUTER) JOIN: Returns all records from the right table, and the matched records from the left table</li>
+          <li>FULL (OUTER) JOIN: Returns all records when there is a match in either left or right table</li>
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="SQL_DROP_DATABASE">
+        <header>SQL_DROP_DATABASE</header>
+        <article>
+          <p>
+          <h1>The SQL CREATE DATABASE Statement</h1>
+          <li>The CREATE DATABASE statement is used to create a new SQL database.</li>
+          <h4>Syntax</h4>
+          <code>
+            CREATE DATABASE databasename;
+          </code>
+          <h5>Example<h5>
+              <code>
+                CREATE DATABASE testDB;
+              </code>
+              </p>
+        </article>
+      </section>
+      <section class="main-section" id="SQL_DROP_DATABASE">
+        <header>SQL_DROP_DATABASE</header>
+        <article>
+          <p>
+          <h1>SQL DROP DATABASE</h1>
+          <li>The DROP DATABASE statement is used to drop an existing SQL database</li>
+          <h4>Syntax</h4>
+          <code>
+            DROP DATABASE databasename;
+          </code>
+          <h4>DROP DATABASE Example</h4>
+          <p>The following SQL statement drops the existing database "testDB":</p>
+          <code>
+            DROP DATABASE testDB;
+          </code>
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="SQL_BACKUP_DATABASE">
+        <header>SQL_BACKUP_DATABASE</header>
+        <article>
+          <p>The BACKUP DATABASE statement is used in SQL Server to create a full back up of an existing SQL database.</p>
+          <h4>Syntax</h4>
+          <code>
+            BACKUP DATABASE databasename
+            TO DISK = 'filepath';
+          </code>
+          <h1>The SQL BACKUP WITH DIFFERENTIAL Statement</h1>
+          <p>A differential back up only backs up the parts of the database that have changed since the last full database backup</p>
+          <h4>Syntax</h4>
+          <code>
+            BACKUP DATABASE databasename
+            TO DISK = 'filepath'
+            WITH DIFFERENTIAL;
+          </code>
+          <h4>BACKUP DATABASE Example</h4>
+          <code>
+            BACKUP DATABASE testDB
+            TO DISK = 'D:\backups\testDB.bak';
+          </code>
+        </article>
+      </section>
+      <section class="main-section" id="SQL_CREATE_TABLE">
+        <header>SQL_CREATE_TABLE</header>
+        <article>
+          <p>
+          <p>The CREATE TABLE statement is used to create a new table in a database.</p>
+          <h4>Syntax</h4>
+          <code>
+            CREATE TABLE table_name (
+            column1 datatype,
+            column2 datatype,
+            column3 datatype,
+            ....
+            );
+          </code>
+          <li>The column parameters specify the names of the columns of the table.</li>
+
+          <li>The datatype parameter specifies the type of data the column can hold (e.g. varchar, integer, date, etc.)</li>
+          <h4>Example</h4>
+          <code>
+            CREATE TABLE Persons (
+            PersonID int,
+            LastName varchar(255),
+            FirstName varchar(255),
+            Address varchar(255),
+            City varchar(255)
+            );
+          </code>
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="SQL_DROP_TABLE">
+        <header>SQL_DROP_TABLE</header>
+        <article>
+          <p>
+          <p>The DROP TABLE statement is used to drop an existing table in a database.</p>
+          Example!:
+          <code>
+            DROP TABLE Shippers;
+          </code>
+          <h4>SQL TRUNCATE TABLE</h4>
+          <p>The TRUNCATE TABLE statement is used to delete the data inside a table, but not the table itself.</p>
+          <code>
+            TRUNCATE TABLE table_name;
+          </code>
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="SQL_ALTER_TABLE">
+        <header>SQL_ALTER_TABLE</header>
+        <article>
+          <p>
+          <ul>
+            <li>The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.</li>
+
+            <li>The ALTER TABLE statement is also used to add and drop various constraints on an existing table.</li>
+            <h3>ALTER TABLE - ADD Column</h3>
+            <code>
+              ALTER TABLE table_name
+              ADD column_name datatype;
+            </code>
+            <h3>ALTER TABLE - DROP COLUMN</h3>
+            <code>
+              ALTER TABLE table_name
+              DROP COLUMN column_name;
+            </code>
+            <h3>ALTER TABLE - ALTER/MODIFY COLUMN</h3>
+            <code>
+              ALTER TABLE table_name
+              ALTER COLUMN column_name datatype;
+            </code>
+            </p>
+        </article>
+      </section>
+      <section class="main-section" id="SQL_Constraints">
+        <header>SQL_Constraints</header>
+        <article>
+          <p>
+
+          <p>Constraints can be specified when the table is created with the CREATE TABLE statement, or after the table is created with the ALTER TABLE statement.</p>
+          <h4>Syntax<h4>
+              <code>
+                CREATE TABLE table_name (
+                column1 datatype constraint,
+                column2 datatype constraint,
+                column3 datatype constraint,
+                ....
+                ); </code>
+
+              <ul>
+                <li> The following constraints are commonly used in SQL:</li>
+
+                <li>NOT NULL - Ensures that a column cannot have a NULL value</li>
+                <li>UNIQUE - Ensures that all values in a column are different</li>
+                <li>PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table</li>
+                <li>FOREIGN KEY - Prevents actions that would destroy links between tables</li>
+                <li>CHECK - Ensures that the values in a column satisfies a specific condition</li>
+                <li>DEFAULT - Sets a default value for a column if no value is specified</li>
+                <li>CREATE INDEX - Used to create and retrieve data from the database very quickly</li>
+              </ul>
+              </p>
+        </article>
+      </section>
+      <section class="main-section" id="Reference">
+        <header>Reference</header>
+        <article>
+          <ul>
+            <li>
+              All the documentation in this page is taken from
+              <a href="https://www.w3schools.com/sql/default.asp" target="_blank">W3schools</a>
+            </li>
+          </ul>
+        </article>
+      </section>
+    </main>
+  </body>
+
+  </html>
